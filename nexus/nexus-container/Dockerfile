@@ -23,7 +23,7 @@ RUN curl --fail --silent --location --retry 3 \
 # Install the binaries
 RUN mkdir -p /opt/nexus/nexus \
   && curl --fail --silent --location --retry 3 \
-    https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz \
+    https://github.com/jarielpa/nexus-public/releases/download/2.14/nexus-bundle-template-2.14.2-SNAPSHOT-bundle.zip \
   | gunzip \
   | tar x -C /tmp nexus-${NEXUS_VERSION} \
   && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/nexus/nexus/ \
