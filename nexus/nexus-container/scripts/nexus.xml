@@ -93,36 +93,6 @@
       </externalConfiguration>
     </repository>
     <repository>
-      <id>codehaus-snapshots</id>
-      <name>Codehaus Snapshots</name>
-      <providerRole>org.sonatype.nexus.proxy.repository.Repository</providerRole>
-      <providerHint>maven2</providerHint>
-      <localStatus>IN_SERVICE</localStatus>
-      <notFoundCacheActive>true</notFoundCacheActive>
-      <notFoundCacheTTL>1440</notFoundCacheTTL>
-      <userManaged>true</userManaged>
-      <exposed>true</exposed>
-      <browseable>true</browseable>
-      <writePolicy>READ_ONLY</writePolicy>
-      <indexable>true</indexable>
-      <searchable>true</searchable>
-      <localStorage>
-        <provider>file</provider>
-      </localStorage>
-      <remoteStorage>
-        <url>https://nexus.codehaus.org/snapshots/</url>
-      </remoteStorage>
-      <externalConfiguration>
-        <proxyMode>BLOCKED_AUTO</proxyMode>
-        <artifactMaxAge>1440</artifactMaxAge>
-        <itemMaxAge>1440</itemMaxAge>
-        <cleanseRepositoryMetadata>false</cleanseRepositoryMetadata>
-        <downloadRemoteIndex>false</downloadRemoteIndex>
-        <checksumPolicy>WARN</checksumPolicy>
-        <repositoryPolicy>SNAPSHOT</repositoryPolicy>
-      </externalConfiguration>
-    </repository>
-    <repository>
       <id>releases</id>
       <name>Releases</name>
       <providerRole>org.sonatype.nexus.proxy.repository.Repository</providerRole>
@@ -241,14 +211,16 @@
           <memberRepository>snapshots</memberRepository>
           <memberRepository>thirdparty</memberRepository>
           <memberRepository>central</memberRepository>
-          <memberRepository>jboss</memberRepository>
-          <memberRepository>jboss-ce</memberRepository>
+          <memberRepository>redhat-ga</memberRepository>
+          <memberRepository>fuse-releases</memberRepository>
+          <memberRepository>fusesource.ea</memberRepository>
+          <memberRepository>maven.itella.com</memberRepository>
         </memberRepositories>
       </externalConfiguration>
     </repository>
     <repository>
-      <id>jboss</id>
-      <name>jboss</name>
+      <id>redhat-ga</id>
+      <name>Red Hat GA</name>
       <providerRole>org.sonatype.nexus.proxy.repository.Repository</providerRole>
       <providerHint>maven2</providerHint>
       <localStatus>IN_SERVICE</localStatus>
@@ -264,7 +236,7 @@
         <provider>file</provider>
       </localStorage>
       <remoteStorage>
-        <url>http://maven.repository.redhat.com/techpreview/all/</url>
+        <url>https://maven.repository.redhat.com/ga/</url>
       </remoteStorage>
       <externalConfiguration>
         <repositoryPolicy>RELEASE</repositoryPolicy>
@@ -278,8 +250,8 @@
       </externalConfiguration>
     </repository>
     <repository>
-      <id>jboss-ce</id>
-      <name>jboss-ce</name>
+      <id>fuse-releases</id>
+      <name>FuseSource Releases</name>
       <providerRole>org.sonatype.nexus.proxy.repository.Repository</providerRole>
       <providerHint>maven2</providerHint>
       <localStatus>IN_SERVICE</localStatus>
@@ -295,7 +267,70 @@
         <provider>file</provider>
       </localStorage>
       <remoteStorage>
-        <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+        <url>http://repo.fusesource.com/nexus/content/repositories/releases/</url>
+      </remoteStorage>
+      <externalConfiguration>
+        <repositoryPolicy>RELEASE</repositoryPolicy>
+        <checksumPolicy>WARN</checksumPolicy>
+        <fileTypeValidation>true</fileTypeValidation>
+        <downloadRemoteIndex>true</downloadRemoteIndex>
+        <artifactMaxAge>-1</artifactMaxAge>
+        <metadataMaxAge>1440</metadataMaxAge>
+        <itemMaxAge>1440</itemMaxAge>
+        <autoBlockActive>true</autoBlockActive>
+      </externalConfiguration>
+    </repository>
+        <repository>
+      <id>fusesource.ea</id>
+      <name>FuseSource Community Early Access Release Repository</name>
+      <providerRole>org.sonatype.nexus.proxy.repository.Repository</providerRole>
+      <providerHint>maven2</providerHint>
+      <localStatus>IN_SERVICE</localStatus>
+      <notFoundCacheActive>true</notFoundCacheActive>
+      <notFoundCacheTTL>1440</notFoundCacheTTL>
+      <userManaged>true</userManaged>
+      <exposed>true</exposed>
+      <browseable>true</browseable>
+      <writePolicy>READ_ONLY</writePolicy>
+      <indexable>true</indexable>
+      <searchable>true</searchable>
+      <localStorage>
+        <provider>file</provider>
+      </localStorage>
+      <remoteStorage>
+        <url>https://repo.fusesource.com/nexus/content/groups/ea/</url>
+      </remoteStorage>
+      <externalConfiguration>
+        <repositoryPolicy>RELEASE</repositoryPolicy>
+        <checksumPolicy>WARN</checksumPolicy>
+        <fileTypeValidation>true</fileTypeValidation>
+        <downloadRemoteIndex>true</downloadRemoteIndex>
+        <artifactMaxAge>-1</artifactMaxAge>
+        <metadataMaxAge>1440</metadataMaxAge>
+        <itemMaxAge>1440</itemMaxAge>
+        <autoBlockActive>true</autoBlockActive>
+      </externalConfiguration>
+    </repository>
+     <repository>
+      <id>maven.itella.com</id>
+      <name>maven.itella.com</name>
+      <providerRole>org.sonatype.nexus.proxy.repository.Repository</providerRole
+>
+      <providerHint>maven2</providerHint>
+      <localStatus>IN_SERVICE</localStatus>
+      <notFoundCacheActive>true</notFoundCacheActive>
+      <notFoundCacheTTL>1440</notFoundCacheTTL>
+      <userManaged>true</userManaged>
+      <exposed>true</exposed>
+      <browseable>true</browseable>
+      <writePolicy>READ_ONLY</writePolicy>
+      <indexable>true</indexable>
+      <searchable>true</searchable>
+      <localStorage>
+        <provider>file</provider>
+      </localStorage>
+      <remoteStorage>
+        <url>http://maven.itella.com/repository/central-maven-repo/</url>
       </remoteStorage>
       <externalConfiguration>
         <repositoryPolicy>RELEASE</repositoryPolicy>
@@ -387,14 +422,6 @@
       </patterns>
     </repositoryTarget>
     <repositoryTarget>
-      <id>rubygems</id>
-      <name>All (rubygems)</name>
-      <contentClass>rubygems</contentClass>
-      <patterns>
-        <pattern>.*</pattern>
-      </patterns>
-    </repositoryTarget>
-    <repositoryTarget>
       <id>npm</id>
       <name>All (npm)</name>
       <contentClass>npm</contentClass>
@@ -406,6 +433,14 @@
       <id>nuget</id>
       <name>All (nuget)</name>
       <contentClass>nuget</contentClass>
+      <patterns>
+        <pattern>.*</pattern>
+      </patterns>
+    </repositoryTarget>
+    <repositoryTarget>
+      <id>rubygems</id>
+      <name>All (rubygems)</name>
+      <contentClass>rubygems</contentClass>
       <patterns>
         <pattern>.*</pattern>
       </patterns>
