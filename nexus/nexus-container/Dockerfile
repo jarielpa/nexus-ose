@@ -2,7 +2,7 @@ FROM centos:7
 
 EXPOSE 8081
 
-ENV NEXUS_VERSION 2.14.2-SNAPSHOT
+ENV NEXUS_VERSION 2.14.0-01
 ENV NEXUS_HOME /opt/nexus/nexus
 ENV NEXUS_WORK /sonatype-work
 ENV NEXUS_REPOS /repositories
@@ -20,20 +20,16 @@ RUN curl --fail --silent --location --retry 3 \
     -o /usr/local/bin/jq \
     && chmod 755 /usr/local/bin/jq
 
-RUN yum install zip unzip -y
-
 # Install the binaries
 RUN mkdir -p /opt/nexus/nexus \
-  && curl  -O --fail --silent --location --retry 3 \
-    https://github.com/jarielpa/nexus-public/releases/download/2.14/nexus-2.14.1-01-bundle-fix.zip \
-   && unzip nexus-2.14.1-01-bundle-fix.zip -d /tmp/nexus-${NEXUS_VERSION} \
-   && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/nexus/nexus/ \
-   && rm -rf /tmp/nexus-${NEXUS_VERSION}
-#  | gunzip \
-#  | tar x -C /tmp nexus-${NEXUS_VERSION} \
-# && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/nexus/nexus/ \
-# && rm -rf /tmp/nexus-${NEXUS_VERSION}
+  && curl --fail --silent --location --retry 3 \
+    https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz \
+  | gunzip \
+  | tar x -C /tmp nexus-${NEXUS_VERSION} \
+  && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/nexus/nexus/ \
+  && rm -rf /tmp/nexus-${NEXUS_VERSION}
 
+COPY nexus-oss-edition-2.14.1-01.jar /opt/nexus/nexus/nexus/WEB-INF/lib/nexus-oss-edition-2.14.1-01.jar
 
 RUN chmod 777 $NEXUS_HOME \
    && mkdir -p $NEXUS_WORK && chmod -R 777 $NEXUS_WORK \
@@ -70,7 +66,7 @@ WORKDIR $NEXUS_HOME
 ENV CONTEXT_PATH /
 ENV MAX_HEAP 768m
 ENV MIN_HEAP 256m
-ENV JAVA_OPTS -server -XX:MaxPermSize=192m -Djava.net.preferIPv4Stack=true -Dhttp.proxyHost=http://proxy.posti.fi -Dhttp.proxyPort=8086 -Dhttps.proxyHost=http://proxy.posti.fi -Dhttps.proxyPort=8086 -Dhttp.nonProxyHosts=maven.itella.com
+ENV JAVA_OPTS -server -XX:MaxPermSize=192m -Djava.net.preferIPv4Stack=true
 ENV LAUNCHER_CONF ${NEXUS_HOME}/conf/jetty.xml ${NEXUS_HOME}/conf/jetty-requestlog.xml
 CMD java \
   -Dnexus-work=${NEXUS_WORK} -Dnexus-webapp-context-path=${CONTEXT_PATH} -Dapplication-conf=${NEXUS_HOME}/conf \
