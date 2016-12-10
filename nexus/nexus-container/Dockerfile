@@ -2,7 +2,7 @@ FROM centos:7
 
 EXPOSE 8081
 
-ENV NEXUS_VERSION 2.14.0-01
+ENV NEXUS_VERSION 2.14.2-SNAPSHOT
 ENV NEXUS_HOME /opt/nexus/nexus
 ENV NEXUS_WORK /sonatype-work
 ENV NEXUS_REPOS /repositories
@@ -22,12 +22,16 @@ RUN curl --fail --silent --location --retry 3 \
 
 # Install the binaries
 RUN mkdir -p /opt/nexus/nexus \
-  && curl --fail --silent --location --retry 3 \
-    https://github.com/jarielpa/nexus-public/releases/download/2.14/nexus-bundle-template-2.14.2-SNAPSHOT-bundle.zip \
-  | gunzip \
-  | tar x -C /tmp nexus-${NEXUS_VERSION} \
-  && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/nexus/nexus/ \
-  && rm -rf /tmp/nexus-${NEXUS_VERSION}
+  && curl  -fail --silent --location --retry 3 \
+    https://github.com/jarielpa/nexus-public/releases/download/2.14/nexus-bundle-template-2.14.2-SNAPSHOT-bundle.zip -o /tmp/nexus-${NEXUS_VERSION}.zip \
+   && unzip /tmp/nexus-${NEXUS_VERSION}.zip \
+   && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/nexus/nexus/ \
+   && rm -rf /tmp/nexus-${NEXUS_VERSION}
+#  | gunzip \
+#  | tar x -C /tmp nexus-${NEXUS_VERSION} \
+# && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/nexus/nexus/ \
+# && rm -rf /tmp/nexus-${NEXUS_VERSION}
+
 
 RUN chmod 777 $NEXUS_HOME \
    && mkdir -p $NEXUS_WORK && chmod -R 777 $NEXUS_WORK \
