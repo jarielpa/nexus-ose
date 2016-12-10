@@ -64,7 +64,7 @@ WORKDIR $NEXUS_HOME
 ENV CONTEXT_PATH /
 ENV MAX_HEAP 768m
 ENV MIN_HEAP 256m
-ENV JAVA_OPTS -server -XX:MaxPermSize=192m -Djava.net.preferIPv4Stack=true
+ENV JAVA_OPTS -server -XX:MaxPermSize=192m -Djava.net.preferIPv4Stack=true -Dhttp.proxyHost=http://proxy.posti.fi -Dhttp.proxyPort=8086 -Dhttps.proxyHost=http://proxy.posti.fi -Dhttps.proxyPort=8086 -Dhttp.nonProxyHosts=maven.itella.com
 ENV LAUNCHER_CONF ${NEXUS_HOME}/conf/jetty.xml ${NEXUS_HOME}/conf/jetty-requestlog.xml
 CMD java \
   -Dnexus-work=${NEXUS_WORK} -Dnexus-webapp-context-path=${CONTEXT_PATH} -Dapplication-conf=${NEXUS_HOME}/conf \
