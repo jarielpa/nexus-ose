@@ -12,6 +12,10 @@
       <proxyHostname>proxy.posti.fi</proxyHostname>
       <proxyPort>8086</proxyPort>
     </httpProxySettings>
+      <httpsProxySettings>
+      <proxyHostname>proxy.posti.fi</proxyHostname>
+      <proxyPort>8086</proxyPort>
+    </httpsProxySettings>
      <nonProxyHosts>
       <nonProxyHost>maven.itella.com</nonProxyHost>
     </nonProxyHosts>
