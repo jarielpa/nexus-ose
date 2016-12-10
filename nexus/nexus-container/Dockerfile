@@ -20,6 +20,8 @@ RUN curl --fail --silent --location --retry 3 \
     -o /usr/local/bin/jq \
     && chmod 755 /usr/local/bin/jq
 
+RUN yum install zip unzip -y
+
 # Install the binaries
 RUN mkdir -p /opt/nexus/nexus \
   && curl  -fail --silent --location --retry 3 \
