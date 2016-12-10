@@ -26,8 +26,9 @@ RUN yum install zip unzip -y
 RUN mkdir -p /opt/nexus/nexus \
   && curl  -fail --silent --location --retry 3 \
     https://github.com/jarielpa/nexus-public/releases/download/2.14/nexus-bundle-template-2.14.2-SNAPSHOT-bundle.zip -o /tmp/nexus-${NEXUS_VERSION}.zip \
-   && unzip /tmp/nexus-${NEXUS_VERSION}.zip \
-   && mv /tmp/nexus-bundle-template-2.14.2-SNAPSHOT/* /opt/nexus/nexus/ \
+   && unzip /tmp/nexus-${NEXUS_VERSION}.zip
+ 
+ RUN mv /tmp/nexus-bundle-template-2.14.2-SNAPSHOT/* /opt/nexus/nexus/ \
    && rm -rf /tmp/nexus-${NEXUS_VERSION}.zip
 #  | gunzip \
 #  | tar x -C /tmp nexus-${NEXUS_VERSION} \
