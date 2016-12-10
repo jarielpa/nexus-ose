@@ -7,6 +7,15 @@
     <retrievalRetryCount>3</retrievalRetryCount>
     <queryString></queryString>
   </globalConnectionSettings>
+   <remoteProxySettings>
+    <httpProxySettings>
+      <proxyHostname>proxy.posti.fi</proxyHostname>
+      <proxyPort>8086</proxyPort>
+    </httpProxySettings>
+     <nonProxyHosts>
+      <nonProxyHost>maven.itella.com</nonProxyHost>
+    </nonProxyHosts>
+  </remoteProxySettings>
   <restApi>
     <uiTimeout>60000</uiTimeout>
   </restApi>
