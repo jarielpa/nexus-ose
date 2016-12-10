@@ -214,9 +214,6 @@
           <memberRepository>redhat-ga</memberRepository>
           <memberRepository>fuse-releases</memberRepository>
           <memberRepository>fusesource.ea</memberRepository>
-          <memberRepository>maven.itella.com</memberRepository>
-           <memberRepository>maven.itella.com-releases</memberRepository>
-          <memberRepository>maven.itella.com-snapshots</memberRepository>
         </memberRepositories>
       </externalConfiguration>
     </repository>
